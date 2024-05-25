@@ -1,0 +1,107 @@
+--打开编辑文件
+ vi nginx.conf
+ 
+--进入编辑状态
+ 按字母 i
+ 
+--退出或保存
+按 左上角 ESC 
+
+再按 shift 同时按 :
+
+不保存退出输入 q! 回车
+
+保存退出输入 w! 回车
+
+
+从 /tmp/nginx.conf  复制到 当前目录  
+
+cp /tmp/nginx.conf ./
+
+解压
+a.tar
+
+tar -xzvf 
+打包
+tar -czvf
+
+	extract
+     -cvf 
+	 create 压缩文件
+a.zip
+
+unzip a.zip
+
+==============
+fatal   致命错误
+
+运程拷贝文件：scp 命令：1、scp -r 本地路径下的文件 root@192.168.0.0:/opt
+
+=========================================================
+登录数据库：sqlplus 用户名/密码@ip:端口/serverid
+如登录oracle:sqlplus root/123456@localhost:1521/orcl
+
+切换用户：su 用户
+
+查看进程：ps |grep 
+          jps |grep nacos
+		  
+docker查看进程：docker ps |grep 应用名
+docker清缓存：docker system prune -a
+进入定时器界面：crontab -e
+验证是否建立定时器：crontab -l
+======================================
+oracle:
+创建角色：CREATE ROLE SELECT_ROLE
+分配权限：
+grant CREATE VIEW to SELECT_ROLE;
+grant CREATE SYNONYM to SELECT_ROLE;
+grant CONNECT TO SELECT_ROLE;
+grant SELECT ANY DICTIONARY to SELECT_ROLE;
+grant SELECT ANY TABLE to SELECT_ROLE;
+grant SELECT ANY TRANSACTION to SELECT_ROLE;
+grant SELECT ANY SEQUENCE to SELECT_ROLE;
+把角色赋予指定账户：
+CREATE USER user IDENTIFIED BY user DEFAULT TABLESPACE xxx;
+grant SELECT_ROLE to user;
+删除角色：
+drop role select_role;
+检查权限：
+select * from dba_sys_privs where grantee='SELECT_ROLE'
+oracle密码永不过期及账号锁定解决方法：
+alter profile default limit password_life_time unlimited;
+alter profile default limit failed_login_attempts unlimited;
+解锁：alter user user_name account unlock;
+查看进程：show parameter processes;
+更改进程：alter system set processes=2000 scope=spfile;
+================================================================
+更改mysql密码过期
+select * from mysql.user where user="root"   
+update user set password_expired="N" where user="root";
+flush privileges; 
+===============================================================
+docker主要命令：
+systemctl start docker
+systemctl restart docker
+systemctl stop docker
+开机启动：
+chkconfig docker on
+docker search image_id
+docker pull
+docker images
+docker rmi container_id
+kubectl exec -it  container_id bin/bash
+容器自启动
+docker update --restart=always container_name
+列出所有在运行的容器信息
+docker ps 
+查看容器日志
+docker logs --tail=100  container_name
+=========================================
+kubectl主要命令：			
+1、查看容器：kubectl get pods -A|grep svc			
+2、执行容器(etl为例）：kubectl exec -it -n etl-393859298hjfjakj i5--1738489166 bash			
+3、查看日志     ：kubectl logs etl-284728756hjfjakj -n i7-67876565 -f --tail=100 |grep error			
+kubectl get pods uamldap-0  -n 1--48740502 -o yaml  |grep -i  claimName			
+然后执行kubectl get pv |grep -i 1--48740502|grep -i home-uamldap-0 查看pv的状态			
+			
